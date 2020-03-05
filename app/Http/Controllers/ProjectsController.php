@@ -9,7 +9,9 @@ class ProjectsController extends Controller
 {
     public function index()
     {
-        $projects = Project::all();
+        /*$projects = Project::all();*/
+
+        $projects = auth()->user()->projects;
 
         return view('projects.index', compact('projects'));
     }
@@ -21,8 +23,27 @@ class ProjectsController extends Controller
             'description' => 'required'
         ]);
 
-        Project::create($validatedAttributes);
+        /*$validatedAttributes['owner_id'] = auth()->id();
+
+        Project::create($validatedAttributes);*/
+
+        auth()->user()->projects()->create($validatedAttributes);
 
         return redirect('/projects');
+    }
+
+    public function show(Project $project)
+    {
+        /*$project = Project::findOrFail(request('project'));*/
+
+        /*if (auth()->id() !== (int) $project->owner_id) {
+            abort(403);
+        }*/
+
+        if (auth()->user()->isNot($project->owner)) {
+            abort(403);
+        }
+
+        return view('projects.show', compact('project'));
     }
 }
