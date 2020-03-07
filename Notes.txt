@@ -1,1 +1,1 @@
-on to Scoping Projects.
+A Project can have Tasks.

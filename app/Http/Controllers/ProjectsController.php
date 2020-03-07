@@ -16,6 +16,26 @@ class ProjectsController extends Controller
         return view('projects.index', compact('projects'));
     }
 
+    public function show(Project $project)
+    {
+        /*$project = Project::findOrFail(request('project'));*/
+
+        /*if (auth()->id() !== (int) $project->owner_id) {
+            abort(403);
+        }*/
+
+        if (auth()->user()->isNot($project->owner)) {
+            abort(403);
+        }
+
+        return view('projects.show', compact('project'));
+    }
+
+    public function create()
+    {
+        return view('projects.create');
+    }
+
     public function store()
     {
         $validatedAttributes = request()->validate([
@@ -30,20 +50,5 @@ class ProjectsController extends Controller
         auth()->user()->projects()->create($validatedAttributes);
 
         return redirect('/projects');
-    }
-
-    public function show(Project $project)
-    {
-        /*$project = Project::findOrFail(request('project'));*/
-
-        /*if (auth()->id() !== (int) $project->owner_id) {
-            abort(403);
-        }*/
-
-        if (auth()->user()->isNot($project->owner)) {
-            abort(403);
-        }
-
-        return view('projects.show', compact('project'));
     }
 }

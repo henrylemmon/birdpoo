@@ -2,45 +2,40 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use App\Project;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ProjectsTest extends TestCase
+class ManageProjectsTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
     /** @test */
-    public function guests_may_not_create_projects()
-    {
-        $attributes = factory(Project::class)->raw();
-
-        $this->post('/projects', $attributes)
-            ->assertRedirect('login');
-    }
-
-    /** @test */
-    public function guests_may_not_view_projects()
-    {
-        $this->get('/projects')
-            ->assertRedirect('login');
-    }
-
-    /** @test */
-    public function guests_may_not_view_a_single_project()
+    public function guests_may_not_manage_projects()
     {
         $project = factory(Project::class)->create();
 
+        $this->get('/projects')
+            ->assertRedirect('login');
+
         $this->get($project->path())
+            ->assertRedirect('login');
+
+        $this->get('/projects/create')
+            ->assertRedirect('login');
+
+        $this->post('/projects', $project->toArray())
             ->assertRedirect('login');
     }
 
     /** @test */
     public function a_user_can_create_a_project()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->signIn();
+
+        $this->get('/projects/create')
+            ->assertStatus(200);
 
         $attributes = [
             'title' => $this->faker->sentence(3),
@@ -52,13 +47,14 @@ class ProjectsTest extends TestCase
 
         $this->assertDatabaseHas('projects', $attributes);
 
-        $this->get('/projects')->assertSee($attributes['title']);
+        $this->get('/projects')
+            ->assertSee($attributes['title']);
     }
 
     /** @test */
     public function a_user_can_view_their_project()
     {
-        $this->be(factory(User::class)->create());
+        $this->signIn();
 
         $project = factory(Project::class)->create(
             ['owner_id' => auth()->id()]
@@ -66,13 +62,13 @@ class ProjectsTest extends TestCase
 
         $this->get($project->path())
             ->assertSee($project->title)
-            ->assertSee($project->description);
+            ->assertSee(\STR::limit($project->description, 75));
     }
 
     /** @test */
     public function a_user_cannot_view_the_projects_of_others()
     {
-        $this->be(factory(User::class)->create());
+        $this->signIn();
 
         $project = factory(Project::class)->create();
 
@@ -83,7 +79,7 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_a_title()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->signIn();
 
         $attributes = factory(Project::class)->raw(['title' => '']);
 
@@ -94,7 +90,7 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_a_description()
     {
-        $this->actingAs(factory(User::class)->create());
+        $this->signIn();
 
         $attributes = factory(Project::class)->raw(['description' => '']);
 

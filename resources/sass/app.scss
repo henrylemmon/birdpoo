@@ -1,14 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+.button {
+    @apply
+    rounded-lg
+    py-1
+    px-3;
+    box-shadow: 0 2px 7px 0 #b0eaff;
+}
 
-// Variables
-@import 'variables';
+.button-blue {
+    @apply
+    button
+    bg-blue-500
+    text-white;
+}
+.button-blue:hover {
+    @apply
+    bg-blue-600;
+}
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+.card {
+    @apply
+    bg-white
+    rounded-lg
+    shadow-lg
+    p-5;
+}
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+.card-header {
+    @apply
+    border-l-4
+    border-blue-500
+    text-xl
+    py-4
+    pl-4
+    -ml-5
+    mb-3;
+}
+
+.card-header:hover {
+    @apply
+    text-blue-800;
 }
