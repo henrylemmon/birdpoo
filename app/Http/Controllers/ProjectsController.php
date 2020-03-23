@@ -47,8 +47,8 @@ class ProjectsController extends Controller
 
         Project::create($validatedAttributes);*/
 
-        auth()->user()->projects()->create($validatedAttributes);
+        $project = auth()->user()->projects()->create($validatedAttributes);
 
-        return redirect('/projects');
+        return redirect($project->path());
     }
 }

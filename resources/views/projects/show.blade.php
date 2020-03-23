@@ -17,15 +17,39 @@
                 <div class="mb-8">
                     <h2 class="text-lg text-gray-500 mb-2">Tasks</h2>
                     <!--tasks-->
-                    @forelse($project->tasks as $task)
+                    @foreach($project->tasks as $task)
                         <div class="card mb-3">
-                            {{ $task->body }}
+                            <form method="POST" action="{{ $task->path() }}">
+                                @method('PATCH')
+                                @csrf
+                                <div class="flex items-center">
+                                    <input
+                                        name="body"
+                                        value="{{ $task->body }}"
+                                        class="w-full mr-4 focus:outline-none{{ $task->completed ? ' text-gray-400' : '' }}"
+                                    >
+                                    <input
+                                        type="checkbox"
+                                        name="completed"
+                                        {{ $task->completed ? 'checked' : '' }}
+                                        onChange="this.form.submit()"
+                                    >
+                                </div>
+                            </form>
                         </div>
-                    @empty
-                        <div class="card mb-3">
-                            No Tasks Yet!
-                        </div>
-                    @endforelse
+                    @endforeach
+
+                    <div class="card mb-3">
+                        <form action="{{ $project->path() . '/tasks' }}" method="POST">
+                            @csrf
+                            <input
+                                name="body"
+                                class="w-full focus:outline-none"
+                                type="text"
+                                placeholder="Add a new task..."
+                            >
+                        </form>
+                    </div>
                 </div>
 
                 <div class="mb-8">

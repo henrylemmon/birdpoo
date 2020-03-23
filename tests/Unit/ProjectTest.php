@@ -33,9 +33,10 @@ class ProjectTest extends TestCase
     {
         $project = factory(Project::class)->create();
 
-        $project->addTask('Testis Taskis');
+        $task = $project->addTask('Testis Taskis');
 
-        $task = $this->assertCount(1, $project->tasks);
+        $this->assertCount(1, $project->tasks);
+
         $this->assertTrue($project->tasks->contains($task));
     }
 }
