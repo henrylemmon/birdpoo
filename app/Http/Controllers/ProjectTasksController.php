@@ -10,9 +10,11 @@ class ProjectTasksController extends Controller
 {
     public function store(Project $project)
     {
-        if (auth()->user()->isNot($project->owner)) {
+        /*if (auth()->user()->isNot($project->owner)) {
             abort(403);
-        }
+        }*/
+
+        $this->authorize('update', $project);
 
         request()->validate([
             'body' => 'required'
@@ -27,9 +29,17 @@ class ProjectTasksController extends Controller
     {
         /*echo request()->has('completed');*/
 
-        if (auth()->user()->isNot($project->owner)) {
+        /*if (auth()->user()->isNot($project->owner)) {
+            abort(403);
+        }*/
+
+        // gotta update the test to fail using the above an
+        // then make it pass using the below.
+        if (auth()->user()->isNot($task->project->owner)) {
             abort(403);
         }
+
+        /*$this->authorize('update', $project);*/
 
         request()->validate([
             'body' => 'required'

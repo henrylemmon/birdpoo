@@ -7,7 +7,7 @@
                 <a href="/projects">My Projects</a> / {{ $project->title }}
             </p>
 
-            <a class="button-blue" href="/projects/create">New Project</a>
+            <a class="button-blue" href="{{ $project->path() . '/edit' }}">Edit Project</a>
         </div>
     </header>
 
@@ -55,10 +55,24 @@
                 <div class="mb-8">
                     <h2 class="text-lg text-gray-500 mb-2">General Notes</h2>
                     {{--general notes--}}
-                    <textarea
-                        class="card w-full"
-                        style="min-height:200px;"
-                    >Lorem notesum</textarea>
+                    <form action="{{ $project->path() }}" method="POST">
+                        @method('PATCH')
+                        @csrf
+                        <textarea
+                            name="notes"
+                            class="card w-full"
+                            style="min-height:200px;"
+                            placeholder="Anything special that you want to make a note of?"
+                        >{{ $project->notes }}</textarea>
+                        <button type="submit" class="button-blue mt-2">Save</button>
+                    </form>
+                    @if ($errors->any())
+                        <ul class="mt-4">
+                            @foreach ($errors->all() as $error)
+                                <li class="text-xs text-red-500">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </div>
             </div>
 

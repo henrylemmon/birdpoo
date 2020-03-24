@@ -24,9 +24,11 @@ class ProjectsController extends Controller
             abort(403);
         }*/
 
-        if (auth()->user()->isNot($project->owner)) {
+        /*if (auth()->user()->isNot($project->owner)) {
             abort(403);
-        }
+        }*/
+
+        $this->authorize('update', $project);
 
         return view('projects.show', compact('project'));
     }
@@ -38,17 +40,51 @@ class ProjectsController extends Controller
 
     public function store()
     {
-        $validatedAttributes = request()->validate([
+        /*$validatedAttributes = request()->validate([
             'title' => 'required',
-            'description' => 'required'
-        ]);
+            'description' => 'required|max:75',
+            'notes' => 'min:3'
+        ]);*/
 
         /*$validatedAttributes['owner_id'] = auth()->id();
 
         Project::create($validatedAttributes);*/
 
-        $project = auth()->user()->projects()->create($validatedAttributes);
+        $project = auth()->user()->projects()->create($this->validatedAttributes());
 
         return redirect($project->path());
+    }
+
+    public function edit(Project $project)
+    {
+        return view('projects.edit', compact('project'));
+    }
+
+    public function update(Project $project)
+    {
+        /*if (auth()->user()->isNot($project->owner)) {
+            abort(403);
+        }*/
+
+        $this->authorize('update', $project);
+
+        /*$validatedAttributes = request()->validate([
+            'title' => 'required',
+            'description' => 'required|max:75',
+            'notes' => 'min:3'
+        ]);*/
+
+        $project->update($this->validatedAttributes());
+
+        return redirect($project->path());
+    }
+
+    protected function validatedAttributes()
+    {
+        return request()->validate([
+            'title' => 'sometimes|required',
+            'description' => 'sometimes|required|max:75',
+            'notes' => 'nullable'
+        ]);
     }
 }
