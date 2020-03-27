@@ -91,6 +91,33 @@ class ProjectTasksTest extends TestCase
         $task = $project->addTask('Testo Taskola');*/
 
         $this->patch($project->tasks->first()->path(), [
+            'body' => 'Testo Taskola Changeo'/*,
+            'completed' => true*/
+        ]);
+
+        $this->assertDatabaseHas('tasks', [
+            'body' => 'Testo Taskola Changeo'/*,
+            'completed' => true*/
+        ]);
+    }
+
+    /** @test */
+    public function a_task_can_be_completed()
+    {
+        $project = app(ProjectFactory::class)
+            ->ownedBy($this->signIn())
+            ->withTasks(1)
+            ->create();
+
+        /*$project = factory(Project::class)->create(['owner_id' => auth()->id()]);*/
+
+        /* $project = auth()->user()->projects()->create(
+             factory(Project::class)->raw()
+         );
+
+         $task = $project->addTask('Testo Taskola');*/
+
+        $this->patch($project->tasks->first()->path(), [
             'body' => 'Testo Taskola Changeo',
             'completed' => true
         ]);
@@ -98,6 +125,30 @@ class ProjectTasksTest extends TestCase
         $this->assertDatabaseHas('tasks', [
             'body' => 'Testo Taskola Changeo',
             'completed' => true
+        ]);
+    }
+
+    /** @test */
+    public function a_task_can_be_marked_as_incomplete()
+    {
+        $project = app(ProjectFactory::class)
+            ->ownedBy($this->signIn())
+            ->withTasks(1)
+            ->create();
+
+        $this->patch($project->tasks->first()->path(), [
+            'body' => 'Testo Taskola Changeo',
+            'completed' => true
+        ]);
+
+        $this->patch($project->tasks->first()->path(), [
+            'body' => 'Testo Taskola Changeo again',
+            'completed' => false
+        ]);
+
+        $this->assertDatabaseHas('tasks', [
+            'body' => 'Testo Taskola Changeo again',
+            'completed' => false
         ]);
     }
 

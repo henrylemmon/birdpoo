@@ -78,8 +78,9 @@
 
             <div class="lg:w-1/4 lg:px-3">
                 @include('projects.card')
-            </div>
 
+                @include ('projects.activity.card')
+            </div>
         </div>
     </main>
 @endsection

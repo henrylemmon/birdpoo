@@ -35,20 +35,36 @@ class ProjectTasksController extends Controller
 
         // gotta update the test to fail using the above an
         // then make it pass using the below.
-        if (auth()->user()->isNot($task->project->owner)) {
+        /*if (auth()->user()->isNot($task->project->owner)) {
             abort(403);
-        }
+        }*/
 
-        /*$this->authorize('update', $project);*/
+        $this->authorize('update', $task->project);
 
-        request()->validate([
+        /*$attributes = request()->validate([
             'body' => 'required'
-        ]);
+        ]);*/
 
-        $task->update([
+        $task->update(request()->validate([
+            'body' => 'required'
+        ]));
+
+        request('completed') ? $task->complete() : $task->incomplete();
+
+        /*$method = request('completed') ? 'complete' : 'incomplete';
+
+        $task->$method();*/
+
+        /*if (request('completed')) {
+            $task->complete();
+        } else {
+            $task->incomplete();
+        }*/
+
+        /*$task->update([
             'body' => request('body'),
             'completed' => request()->has('completed')
-        ]);
+        ]);*/
 
         return redirect($project->path());
     }
