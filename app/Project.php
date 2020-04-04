@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
 
     public function path()
@@ -28,22 +30,22 @@ class Project extends Model
         return $this->tasks()->create(compact('body'));
     }
 
-    public function recordActivity($description)
-    {
-        $this->activity()->create(compact('description'));
-
-        /*$this->activity()->create([
-            'description' => $description
-        ]);*/
-
-        /*Activity::create([
-            'project_id' => $this->id,
-            'description' => $type
-        ]);*/
-    }
-
     public function activity()
     {
         return $this->hasMany(Activity::class)->latest();
+    }
+
+    public function invite(User $user)
+    {
+        // using pivot we attach user to project
+        return $this->members()->attach($user);
+    }
+
+    public function members()
+    {
+        // is it true that a project can have many members
+        // and also members can have many projects
+        // so we need a pivot table
+        return $this->belongsToMany(User::class, 'project_members');
     }
 }

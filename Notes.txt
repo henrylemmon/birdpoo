@@ -1,1 +1,3 @@
-Rendering activity with polymorphism #24
+update git
+
+beware of false positives #31
