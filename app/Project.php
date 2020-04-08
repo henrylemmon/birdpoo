@@ -46,6 +46,6 @@ class Project extends Model
         // is it true that a project can have many members
         // and also members can have many projects
         // so we need a pivot table
-        return $this->belongsToMany(User::class, 'project_members');
+        return $this->belongsToMany(User::class, 'project_members')->withTimestamps();
     }
 }

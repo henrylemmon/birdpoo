@@ -38,7 +38,11 @@
                             @endif
                         @else
                             <a href="#">
-                                {{ Auth::user()->name }}
+                                <img
+                                    src="{{ gravatar_url(Auth::user()->email) }}"
+                                    alt="{{ Auth::user()->name }}"
+                                    class="rounded-full w-12 mr-2"
+                                >
                             </a>
 
                             <div>

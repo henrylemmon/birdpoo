@@ -7,7 +7,17 @@
                 <a href="/projects">My Projects</a> / {{ $project->title }}
             </p>
 
-            <a class="button-blue" href="{{ $project->path() . '/edit' }}">Edit Project</a>
+            <div>
+                @foreach ($project->members as $member)
+                    <img
+                        src="{{ gravatar_url($member->email) }}"
+                        alt="{{ $member->name }}'s avatar"
+                        class="inline rounded-full w-12 mr-2"
+                    >
+                @endforeach
+
+                <a class="button-blue ml-6" href="{{ $project->path() . '/edit' }}">Edit Project</a>
+            </div>
         </div>
     </header>
 
@@ -66,13 +76,7 @@
                         >{{ $project->notes }}</textarea>
                         <button type="submit" class="button-blue mt-2">Save</button>
                     </form>
-                    @if ($errors->any())
-                        <ul class="mt-4">
-                            @foreach ($errors->all() as $error)
-                                <li class="text-xs text-red-500">{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    @endif
+                    @include ('errors')
                 </div>
             </div>
 
@@ -80,6 +84,14 @@
                 @include('projects.card')
 
                 @include ('projects.activity.card')
+
+                {{--@if (auth()->user()->is($project->owner))
+                    @include ('projects.invite')
+                @endif--}}
+
+                @can ('manage', $project)
+                   @include ('projects.invite')
+                @endcan
             </div>
         </div>
     </main>

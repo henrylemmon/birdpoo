@@ -15,8 +15,6 @@ class TriggerActivityTest extends TestCase
     /** @test */
     public function creating_a_project()
     {
-        $this->withoutExceptionHandling();
-
         $project = ProjectFactory::create();
 
         $this->assertCount(1, $project->activity);
@@ -30,8 +28,6 @@ class TriggerActivityTest extends TestCase
     /** @test */
     public function updating_a_project()
     {
-        $this->withoutExceptionHandling();
-
         $project = ProjectFactory::create();
         $originalTitle = $project->title;
 
@@ -61,8 +57,6 @@ class TriggerActivityTest extends TestCase
     /** @test */
     public function creating_a_task()
     {
-        $this->withoutExceptionHandling();
-
         $project = ProjectFactory::create();
 
         $project->addTask('Some Task');
@@ -81,8 +75,6 @@ class TriggerActivityTest extends TestCase
     /** @test */
     public function completing_a_task()
     {
-        $this->withoutExceptionHandling();
-
         $project = ProjectFactory::withTasks(1)->create();
 
         $this->actingAs($project->owner)
@@ -93,7 +85,7 @@ class TriggerActivityTest extends TestCase
 
         $this->assertCount(3, $project->activity);
 
-        tap($project->activity->last(), function ($activity) {
+        tap($project->fresh()->activity->last(), function ($activity) {
             $this->assertEquals('completed_task', $activity->description);
             $this->assertInstanceOf(Task::class, $activity->subject);
             $this->assertEquals('Fool Bar', $activity->subject->body);
