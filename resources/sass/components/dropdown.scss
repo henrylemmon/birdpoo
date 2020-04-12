@@ -1,0 +1,11 @@
+.dropdown-menu-link {
+    @apply
+    block
+    leading-loose
+    px-4;
+
+    &:hover {
+        @apply
+        bg-gray-200;
+    }
+}

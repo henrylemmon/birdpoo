@@ -17,9 +17,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-gray-200">
+<body class="theme-light bg-page">
     <div id="app" class="px-5">
-        <nav class="bg-white -mx-5 px-4">
+        <nav class="bg-header -mx-5 px-4">
             <div class="container mx-auto">
 
                 <div class="flex items-center justify-between py-2">
@@ -29,7 +29,7 @@
                     </a>
 
                     <!-- Right Side Of Navbar -->
-                    <div>
+                    <div class="flex items-center ml-auto">
                         @guest
                             <a href="{{ route('login') }}">{{ __('Login') }}</a>
 
@@ -37,25 +37,41 @@
                                 <a href="{{ route('register') }}">{{ __('Register') }}</a>
                             @endif
                         @else
-                            <a href="#">
-                                <img
-                                    src="{{ gravatar_url(Auth::user()->email) }}"
-                                    alt="{{ Auth::user()->name }}"
-                                    class="rounded-full w-12 mr-2"
-                                >
-                            </a>
+                            <theme-switcher></theme-switcher>
 
-                            <div>
-                                <a href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                            <dropdown align="right" width="200px">
+                                <template v-slot:trigger>
+                                    <button class="flex items-center focus:outline-none">
+                                        <img
+                                            src="{{ gravatar_url(Auth::user()->email) }}"
+                                            alt="{{ Auth::user()->name }}"
+                                            class="rounded-full w-12 mr-3"
+                                        >
+
+                                        {{ auth()->user()->name }}
+                                    </button>
+
+                                </template>
+
+                                <a
+                                    href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();"
+                                    class="dropdown-menu-link"
+                                >
                                     {{ __('Logout') }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                <form
+                                    id="logout-form"
+                                    action="{{ route('logout') }}"
+                                    method="POST"
+                                    style="display: none;"
+                                >
                                     @csrf
                                 </form>
-                            </div>
+                            </dropdown>
+
                         @endguest
                     </div>
                 </div>

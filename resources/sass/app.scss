@@ -2,47 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-.button {
-    @apply
-    rounded-lg
-    py-1
-    px-3;
-    box-shadow: 0 2px 7px 0 #b0eaff;
-}
+@import 'themes/light';
+@import 'themes/dark';
 
-.button-blue {
-    @apply
-    button
-    bg-blue-500
-    text-white;
-}
-.button-blue:hover {
-    @apply
-    bg-blue-600;
-}
+@import 'components/button';
+@import 'components/card';
+@import 'components/dropdown';
 
-.card {
+.border-error {
     @apply
-    bg-white
-    rounded-lg
-    shadow-lg
-    p-5;
-}
-
-.card-header {
-    @apply
-    border-l-4
-    border-blue-500
-    text-xl
-    py-4
-    pl-4
-    -ml-5
-    mb-3;
-}
-
-.card-header:hover {
-    @apply
-    text-blue-800;
+    border-red-500;
 }
 
 @import url("../css/style.css");

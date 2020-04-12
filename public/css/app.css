@@ -1,4 +1,6 @@
-
+/*
+    fuck stick
+*/
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
 /* Document
@@ -1060,6 +1062,22 @@ video {
   background-color: #702459;
 }
 
+.bg-page{
+  background-color: var(--page-background-color);
+}
+
+.bg-card{
+  background-color: var(--card-background-color);
+}
+
+.bg-button{
+  background-color: var(--button-background-color);
+}
+
+.bg-header{
+  background-color: var(--header-background-color);
+}
+
 .hover\:bg-transparent:hover{
   background-color: transparent;
 }
@@ -1432,6 +1450,22 @@ video {
   background-color: #702459;
 }
 
+.hover\:bg-page:hover{
+  background-color: var(--page-background-color);
+}
+
+.hover\:bg-card:hover{
+  background-color: var(--card-background-color);
+}
+
+.hover\:bg-button:hover{
+  background-color: var(--button-background-color);
+}
+
+.hover\:bg-header:hover{
+  background-color: var(--header-background-color);
+}
+
 .focus\:bg-transparent:focus{
   background-color: transparent;
 }
@@ -1802,6 +1836,22 @@ video {
 
 .focus\:bg-pink-900:focus{
   background-color: #702459;
+}
+
+.focus\:bg-page:focus{
+  background-color: var(--page-background-color);
+}
+
+.focus\:bg-card:focus{
+  background-color: var(--card-background-color);
+}
+
+.focus\:bg-button:focus{
+  background-color: var(--button-background-color);
+}
+
+.focus\:bg-header:focus{
+  background-color: var(--header-background-color);
 }
 
 .bg-bottom{
@@ -10341,6 +10391,10 @@ video {
   color: #702459;
 }
 
+.text-default{
+  color: var(--text-default-color);
+}
+
 .hover\:text-transparent:hover{
   color: transparent;
 }
@@ -10713,6 +10767,10 @@ video {
   color: #702459;
 }
 
+.hover\:text-default:hover{
+  color: var(--text-default-color);
+}
+
 .focus\:text-transparent:focus{
   color: transparent;
 }
@@ -11083,6 +11141,10 @@ video {
 
 .focus\:text-pink-900:focus{
   color: #702459;
+}
+
+.focus\:text-default:focus{
+  color: var(--text-default-color);
 }
 
 .text-xs{
@@ -13947,23 +14009,42 @@ video {
   transition-duration: 1000ms;
 }
 
+.theme-light {
+  --page-background-color: #edf2f7;
+  --card-background-color: white;
+  --button-background-color: #4299e1;
+  --header-background-color: white;
+}
+
+.theme-dark {
+  --page-background-color: #17181E;
+  --card-background-color: #1F2027;
+  --button-background-color: #4299E1;
+  --header-background-color: #1F2027;
+  --text-default-color: white;
+}
+
 .button {
   border-radius: 0.5rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-  box-shadow: 0 2px 7px 0 #b0eaff;
+  border-width: 1px;
+  border-color: #3182ce;
+  color: #3182ce;
 }
 
 .button-blue {
+  background-color: var(--button-background-color);
   border-radius: 0.5rem;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-  box-shadow: 0 2px 7px 0 #b0eaff;
-  background-color: #4299e1;
+  border-width: 1px;
+  border-color: #3182ce;
+  color: #3182ce;
   color: #fff;
 }
 
@@ -13972,10 +14053,11 @@ video {
 }
 
 .card {
-  background-color: #fff;
+  background-color: var(--card-background-color);
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   padding: 1.25rem;
+  --text-default-color: green;
 }
 
 .card-header {
@@ -13991,6 +14073,21 @@ video {
 
 .card-header:hover {
   color: #2c5282;
+}
+
+.dropdown-menu-link {
+  display: block;
+  line-height: 2;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.dropdown-menu-link:hover {
+  background-color: #edf2f7;
+}
+
+.border-error {
+  border-color: #f56565;
 }
 
 @media (min-width: 640px){
@@ -14430,6 +14527,22 @@ video {
     background-color: #702459;
   }
 
+  .sm\:bg-page{
+    background-color: var(--page-background-color);
+  }
+
+  .sm\:bg-card{
+    background-color: var(--card-background-color);
+  }
+
+  .sm\:bg-button{
+    background-color: var(--button-background-color);
+  }
+
+  .sm\:bg-header{
+    background-color: var(--header-background-color);
+  }
+
   .sm\:hover\:bg-transparent:hover{
     background-color: transparent;
   }
@@ -14802,6 +14915,22 @@ video {
     background-color: #702459;
   }
 
+  .sm\:hover\:bg-page:hover{
+    background-color: var(--page-background-color);
+  }
+
+  .sm\:hover\:bg-card:hover{
+    background-color: var(--card-background-color);
+  }
+
+  .sm\:hover\:bg-button:hover{
+    background-color: var(--button-background-color);
+  }
+
+  .sm\:hover\:bg-header:hover{
+    background-color: var(--header-background-color);
+  }
+
   .sm\:focus\:bg-transparent:focus{
     background-color: transparent;
   }
@@ -15172,6 +15301,22 @@ video {
 
   .sm\:focus\:bg-pink-900:focus{
     background-color: #702459;
+  }
+
+  .sm\:focus\:bg-page:focus{
+    background-color: var(--page-background-color);
+  }
+
+  .sm\:focus\:bg-card:focus{
+    background-color: var(--card-background-color);
+  }
+
+  .sm\:focus\:bg-button:focus{
+    background-color: var(--button-background-color);
+  }
+
+  .sm\:focus\:bg-header:focus{
+    background-color: var(--header-background-color);
   }
 
   .sm\:bg-bottom{
@@ -23711,6 +23856,10 @@ video {
     color: #702459;
   }
 
+  .sm\:text-default{
+    color: var(--text-default-color);
+  }
+
   .sm\:hover\:text-transparent:hover{
     color: transparent;
   }
@@ -24083,6 +24232,10 @@ video {
     color: #702459;
   }
 
+  .sm\:hover\:text-default:hover{
+    color: var(--text-default-color);
+  }
+
   .sm\:focus\:text-transparent:focus{
     color: transparent;
   }
@@ -24453,6 +24606,10 @@ video {
 
   .sm\:focus\:text-pink-900:focus{
     color: #702459;
+  }
+
+  .sm\:focus\:text-default:focus{
+    color: var(--text-default-color);
   }
 
   .sm\:text-xs{
@@ -27755,6 +27912,22 @@ video {
     background-color: #702459;
   }
 
+  .md\:bg-page{
+    background-color: var(--page-background-color);
+  }
+
+  .md\:bg-card{
+    background-color: var(--card-background-color);
+  }
+
+  .md\:bg-button{
+    background-color: var(--button-background-color);
+  }
+
+  .md\:bg-header{
+    background-color: var(--header-background-color);
+  }
+
   .md\:hover\:bg-transparent:hover{
     background-color: transparent;
   }
@@ -28127,6 +28300,22 @@ video {
     background-color: #702459;
   }
 
+  .md\:hover\:bg-page:hover{
+    background-color: var(--page-background-color);
+  }
+
+  .md\:hover\:bg-card:hover{
+    background-color: var(--card-background-color);
+  }
+
+  .md\:hover\:bg-button:hover{
+    background-color: var(--button-background-color);
+  }
+
+  .md\:hover\:bg-header:hover{
+    background-color: var(--header-background-color);
+  }
+
   .md\:focus\:bg-transparent:focus{
     background-color: transparent;
   }
@@ -28497,6 +28686,22 @@ video {
 
   .md\:focus\:bg-pink-900:focus{
     background-color: #702459;
+  }
+
+  .md\:focus\:bg-page:focus{
+    background-color: var(--page-background-color);
+  }
+
+  .md\:focus\:bg-card:focus{
+    background-color: var(--card-background-color);
+  }
+
+  .md\:focus\:bg-button:focus{
+    background-color: var(--button-background-color);
+  }
+
+  .md\:focus\:bg-header:focus{
+    background-color: var(--header-background-color);
   }
 
   .md\:bg-bottom{
@@ -37036,6 +37241,10 @@ video {
     color: #702459;
   }
 
+  .md\:text-default{
+    color: var(--text-default-color);
+  }
+
   .md\:hover\:text-transparent:hover{
     color: transparent;
   }
@@ -37408,6 +37617,10 @@ video {
     color: #702459;
   }
 
+  .md\:hover\:text-default:hover{
+    color: var(--text-default-color);
+  }
+
   .md\:focus\:text-transparent:focus{
     color: transparent;
   }
@@ -37778,6 +37991,10 @@ video {
 
   .md\:focus\:text-pink-900:focus{
     color: #702459;
+  }
+
+  .md\:focus\:text-default:focus{
+    color: var(--text-default-color);
   }
 
   .md\:text-xs{
@@ -41080,6 +41297,22 @@ video {
     background-color: #702459;
   }
 
+  .lg\:bg-page{
+    background-color: var(--page-background-color);
+  }
+
+  .lg\:bg-card{
+    background-color: var(--card-background-color);
+  }
+
+  .lg\:bg-button{
+    background-color: var(--button-background-color);
+  }
+
+  .lg\:bg-header{
+    background-color: var(--header-background-color);
+  }
+
   .lg\:hover\:bg-transparent:hover{
     background-color: transparent;
   }
@@ -41452,6 +41685,22 @@ video {
     background-color: #702459;
   }
 
+  .lg\:hover\:bg-page:hover{
+    background-color: var(--page-background-color);
+  }
+
+  .lg\:hover\:bg-card:hover{
+    background-color: var(--card-background-color);
+  }
+
+  .lg\:hover\:bg-button:hover{
+    background-color: var(--button-background-color);
+  }
+
+  .lg\:hover\:bg-header:hover{
+    background-color: var(--header-background-color);
+  }
+
   .lg\:focus\:bg-transparent:focus{
     background-color: transparent;
   }
@@ -41822,6 +42071,22 @@ video {
 
   .lg\:focus\:bg-pink-900:focus{
     background-color: #702459;
+  }
+
+  .lg\:focus\:bg-page:focus{
+    background-color: var(--page-background-color);
+  }
+
+  .lg\:focus\:bg-card:focus{
+    background-color: var(--card-background-color);
+  }
+
+  .lg\:focus\:bg-button:focus{
+    background-color: var(--button-background-color);
+  }
+
+  .lg\:focus\:bg-header:focus{
+    background-color: var(--header-background-color);
   }
 
   .lg\:bg-bottom{
@@ -50361,6 +50626,10 @@ video {
     color: #702459;
   }
 
+  .lg\:text-default{
+    color: var(--text-default-color);
+  }
+
   .lg\:hover\:text-transparent:hover{
     color: transparent;
   }
@@ -50733,6 +51002,10 @@ video {
     color: #702459;
   }
 
+  .lg\:hover\:text-default:hover{
+    color: var(--text-default-color);
+  }
+
   .lg\:focus\:text-transparent:focus{
     color: transparent;
   }
@@ -51103,6 +51376,10 @@ video {
 
   .lg\:focus\:text-pink-900:focus{
     color: #702459;
+  }
+
+  .lg\:focus\:text-default:focus{
+    color: var(--text-default-color);
   }
 
   .lg\:text-xs{
@@ -54405,6 +54682,22 @@ video {
     background-color: #702459;
   }
 
+  .xl\:bg-page{
+    background-color: var(--page-background-color);
+  }
+
+  .xl\:bg-card{
+    background-color: var(--card-background-color);
+  }
+
+  .xl\:bg-button{
+    background-color: var(--button-background-color);
+  }
+
+  .xl\:bg-header{
+    background-color: var(--header-background-color);
+  }
+
   .xl\:hover\:bg-transparent:hover{
     background-color: transparent;
   }
@@ -54777,6 +55070,22 @@ video {
     background-color: #702459;
   }
 
+  .xl\:hover\:bg-page:hover{
+    background-color: var(--page-background-color);
+  }
+
+  .xl\:hover\:bg-card:hover{
+    background-color: var(--card-background-color);
+  }
+
+  .xl\:hover\:bg-button:hover{
+    background-color: var(--button-background-color);
+  }
+
+  .xl\:hover\:bg-header:hover{
+    background-color: var(--header-background-color);
+  }
+
   .xl\:focus\:bg-transparent:focus{
     background-color: transparent;
   }
@@ -55147,6 +55456,22 @@ video {
 
   .xl\:focus\:bg-pink-900:focus{
     background-color: #702459;
+  }
+
+  .xl\:focus\:bg-page:focus{
+    background-color: var(--page-background-color);
+  }
+
+  .xl\:focus\:bg-card:focus{
+    background-color: var(--card-background-color);
+  }
+
+  .xl\:focus\:bg-button:focus{
+    background-color: var(--button-background-color);
+  }
+
+  .xl\:focus\:bg-header:focus{
+    background-color: var(--header-background-color);
   }
 
   .xl\:bg-bottom{
@@ -63686,6 +64011,10 @@ video {
     color: #702459;
   }
 
+  .xl\:text-default{
+    color: var(--text-default-color);
+  }
+
   .xl\:hover\:text-transparent:hover{
     color: transparent;
   }
@@ -64058,6 +64387,10 @@ video {
     color: #702459;
   }
 
+  .xl\:hover\:text-default:hover{
+    color: var(--text-default-color);
+  }
+
   .xl\:focus\:text-transparent:focus{
     color: transparent;
   }
@@ -64428,6 +64761,10 @@ video {
 
   .xl\:focus\:text-pink-900:focus{
     color: #702459;
+  }
+
+  .xl\:focus\:text-default:focus{
+    color: var(--text-default-color);
   }
 
   .xl\:text-xs{

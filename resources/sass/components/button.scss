@@ -1,0 +1,20 @@
+.button {
+    @apply
+    rounded-lg
+    py-1
+    px-3
+    border
+    border-blue-600
+    text-blue-600;
+}
+
+.button-blue {
+    @apply
+    bg-button
+    button
+    text-white;
+}
+.button-blue:hover {
+    @apply
+    bg-blue-600;
+}

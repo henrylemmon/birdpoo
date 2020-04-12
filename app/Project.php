@@ -30,6 +30,14 @@ class Project extends Model
         return $this->tasks()->create(compact('body'));
     }
 
+    public function addTasks($tasks)
+    {
+        foreach($tasks as $task) {
+            /*var_dump($task);*/
+            $this->addTask($task['body']);
+        }
+    }
+
     public function activity()
     {
         return $this->hasMany(Activity::class)->latest();
